@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sp="http://spinrdf.org/sp#" xmlns:spin="http://spinrdf.org/spin#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+ <rdf:Description rdf:nodeID="genid2">
+   <rdf:type rdf:resource="http://spinrdf.org/sp#Select"/>
+ </rdf:Description>
+ <rdf:Description rdf:nodeID="genid2">
+   <sp:text>
+select
+   (count(?jb) as ?journal_brands)
+   (count(?j) as ?journals)
+   (count(?je) as ?e_journals)
+   (count(?jel) as ?e_journals_active)
+   (count(?jp) as ?p_journals)
+   (count(?jpl) as ?p_journals_active)
+where {
+   graph ?g {
+       { ?jb a sg:JournalBrand . }
+       union
+       { ?j a sg:Journal . }
+       union
+       { ?je a sg:Journal ; sg:medium ?medium .
+         filter (strstarts(?medium, "Electronic"))
+       }
+       union
+       { ?jel a sg:Journal ; sg:medium ?medium ; sg:isActivePublication true .
+         filter (strstarts(?medium, "Electronic"))
+       }
+       union
+       { ?jp a sg:Journal ; sg:medium ?medium .
+         filter (strstarts(?medium, "Paper"))
+       }
+       union
+       { ?jpl a sg:Journal ; sg:medium ?medium ; sg:isActivePublication true .
+         filter (strstarts(?medium, "Paper"))
+       }
+   }
+}
+</sp:text>
+ </rdf:Description>
+ <rdf:Description rdf:nodeID="genid1">
+   <rdf:type rdf:resource="http://spinrdf.org/spin#SelectTemplate"/>
+ </rdf:Description>
+ <rdf:Description rdf:nodeID="genid1">
+   <rdfs:label>Count journals</rdfs:label>
+ </rdf:Description>
+ <rdf:Description rdf:nodeID="genid1">
+   <rdfs:comment>A template to report the count of journals.</rdfs:comment>
+ </rdf:Description>
+ <rdf:Description rdf:nodeID="genid1">
+   <spin:body rdf:nodeID="genid2"/>
+ </rdf:Description>
+</rdf:RDF>

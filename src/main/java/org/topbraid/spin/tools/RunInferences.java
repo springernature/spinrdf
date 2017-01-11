@@ -49,7 +49,7 @@ public class RunInferences {
 	public static void main(String[] args) throws IOException {
 		
 
-		if(args.length == 0) {
+		 if(args.length == 0) {
 			System.out.println("Arguments: baseURI [fileName]");
 			System.exit(0);
 		}
