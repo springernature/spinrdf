@@ -23,3 +23,9 @@ with the following changes made by TopQuadrant Inc:
 
 These original materials are copyright TopQuadrant Inc and licensed with the
 [Apache Software License](https://www.apache.org/licenses/LICENSE-2.0).
+
+
+## Build & Execution
+mvn package 
+cd target 
+

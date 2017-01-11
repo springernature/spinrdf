@@ -23,11 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.topbraid.spin.constraints.ConstraintViolation;
-import org.topbraid.spin.constraints.SPINConstraints;
-import org.topbraid.spin.system.SPINModuleRegistry;
-import org.topbraid.spin.util.JenaUtil;
-import org.topbraid.spin.vocabulary.SPIN;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -35,13 +30,18 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.FileUtils;
 import org.apache.jena.vocabulary.RDFS;
+import org.spinrdf.constraints.ConstraintViolation;
+import org.spinrdf.constraints.SPINConstraints;
+import org.spinrdf.system.SPINModuleRegistry;
+import org.spinrdf.util.JenaUtil;
+import org.spinrdf.vocabulary.SPIN;
 
 /**
  * A stand-alone constraint checker callable from the command line.
  * 
  * @author Holger Knublauch
  */
-public class CheckConstraints {
+    public class CheckConstraints {
 
 	/**
 	 * The command line entry point.
@@ -51,13 +51,15 @@ public class CheckConstraints {
 	 */
 	public static void main(String[] args) throws IOException {
 		
-		// Initialize system functions and templates
-		SPINModuleRegistry.get().init();
+
 		
 		if(args.length == 0) {
 			System.out.println("Arguments: baseURI [fileName]");
 			System.exit(0);
 		}
+
+		// Initialize system functions and templates
+		SPINModuleRegistry.get().init();
 
 		// Load main file
 		String baseURI = args[0];
