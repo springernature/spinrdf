@@ -52,7 +52,8 @@ import org.spinrdf.vocabulary.SPIN;
 	public static void main(String[] args) throws IOException {
 		
 
-		
+		try {
+
 		if(args.length == 0) {
 			System.out.println("Arguments: baseURI [fileName]");
 			System.exit(0);
@@ -61,6 +62,7 @@ import org.spinrdf.vocabulary.SPIN;
 		// Initialize system functions and templates
 		SPINModuleRegistry.get().init();
 
+			System.out.println("bla");
 		// Load main file
 		String baseURI = args[0];
 		Model baseModel = ModelFactory.createDefaultModel();
@@ -93,5 +95,8 @@ import org.spinrdf.vocabulary.SPIN;
 
 		// Output results in Turtle
 		results.write(System.out, FileUtils.langTurtle);
+	}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 }
